@@ -12,42 +12,20 @@ import (
 	"time"
 )
 
-// GLOBALS START
-var session []string
-var is_quit = false
-var user32_dll = windows.NewLazyDLL("user32.dll")
-var GetKeyState = user32_dll.NewProc("GetKeyState")
-var coordX, coordY int64
-var coordsX, coordsY []int64
-var dts []float64
+// vars START
 
-// GLOBALS END
+var (
+	 session []string
+	 is_quit = false
+	 user32_dll = windows.NewLazyDLL("user32.dll")
+	 GetKeyState = user32_dll.NewProc("GetKeyState")
+	 coordX, coordY int64
+	 coordsX, coordsY []int64
+	 dts []float64
+)
+// vars END
 
-func removeDuplicateStr(strSlice []string) []string {
-	allKeys := make(map[string]bool)
-	list := []string{}
-	for _, item := range strSlice {
-		if _, value := allKeys[item]; !value {
-			allKeys[item] = true
-			list = append(list, item)
-		}
-	}
-	return list
-}
 
-// var readKeyPressBuff = bufio.NewReader(os.Stdin)
-//
-//	func CheckQuit(input chan rune) {
-//		char, _, err := readKeyPressBuff.ReadRune()
-//		if err != nil {
-//			log.Fatal(err)
-//		}
-//		input <- char
-//	}
-func wasESCPressed() bool {
-	r1, _, _ := GetKeyState.Call(27) // Call API to get ESC key state.
-	return r1 == 65409               // Code for KEY_UP event of ESC key.
-}
 func GetAdbCoords() {
 
 	s := "cd adb"
@@ -76,7 +54,7 @@ func GetAdbCoords() {
 			isQuit = true
 			break
 		}
-		time.Sleep(time.Millisecond * 100)
+		time.Sleep(time.Millisecond * 1)
 		if reinitTimer == true {
 			start = time.Now()
 			reinitTimer = false
@@ -111,19 +89,17 @@ func GetAdbCoords() {
 		if coordX != 0 {
 			coordsX = append(coordsX, coordX)
 			fmt.Printf("\n(%d ,", coordX)
-		}
-		if coordY != 0 {
-			coordsY = append(coordsY, coordY)
-			duration = float64(time.Since(start).Seconds())
-			dts = append(dts, duration)
-			reinitTimer = true
-			fmt.Printf(" %d) ---> %.2fs", coordY, duration)
+			if coordY != 0{
+				coordsY = append(coordsY, coordY)
+				duration = time.Since(start).Seconds()
+				dts = append(dts, duration)
+				reinitTimer = true
+				fmt.Printf(" %d) ---> %.2fs", coordY, duration)
+			}
 		}
 		// PROBLEM END
 		time.Sleep(1 * time.Millisecond)
 	} // for loop
-	coordsX = append([]int64{0}, coordsX...) // ADD ELEMENT FROM idx 0
-	coordsX = coordsX[:len(coordsX)-1]       // REMOVE LAST ELEMENT
 	coordsX = coordsX[:len(coordsX)-1]       // REMOVE LAST ELEMENT
 
 	dts = append([]float64{0}, dts...) // ADD ELEMENT FROM idx 0
@@ -156,3 +132,20 @@ func GetAdbCoords() {
 	filePopulator.Flush()
 	file.Close()
 } // func
+
+func removeDuplicateStr(strSlice []string) []string {
+	allKeys := make(map[string]bool)
+	list := []string{}
+	for _, item := range strSlice {
+		if _, value := allKeys[item]; !value {
+			allKeys[item] = true
+			list = append(list, item)
+		}
+	}
+	return list
+}
+
+func wasESCPressed() bool {
+	r1, _, _ := GetKeyState.Call(27) // Call API to get ESC key state.
+	return r1 == 65409               // Code for KEY_UP event of ESC key.
+}
