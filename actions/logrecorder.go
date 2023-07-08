@@ -15,16 +15,16 @@ import (
 // vars START
 
 var (
-	 session []string
-	 is_quit = false
-	 user32_dll = windows.NewLazyDLL("user32.dll")
-	 GetKeyState = user32_dll.NewProc("GetKeyState")
-	 coordX, coordY int64
-	 coordsX, coordsY []int64
-	 dts []float64
+	session          []string
+	is_quit          = false
+	user32_dll       = windows.NewLazyDLL("user32.dll")
+	GetKeyState      = user32_dll.NewProc("GetKeyState")
+	coordX, coordY   int64
+	coordsX, coordsY []int64
+	dts              []float64
 )
-// vars END
 
+// vars END
 
 func GetAdbCoords() {
 
@@ -32,7 +32,7 @@ func GetAdbCoords() {
 	args := strings.Split(s, " ")
 
 	changeDir := exec.Command(args[0], args[1:]...)
-	time.Sleep(1 * time.Second)
+	time.Sleep(3 * time.Second)
 	fmt.Println(changeDir.Stdout)
 
 	s2 := "adb shell getevent"
@@ -89,7 +89,7 @@ func GetAdbCoords() {
 		if coordX != 0 {
 			coordsX = append(coordsX, coordX)
 			fmt.Printf("\n(%d ,", coordX)
-			if coordY != 0{
+			if coordY != 0 {
 				coordsY = append(coordsY, coordY)
 				duration = time.Since(start).Seconds()
 				dts = append(dts, duration)
@@ -100,7 +100,7 @@ func GetAdbCoords() {
 		// PROBLEM END
 		time.Sleep(1 * time.Millisecond)
 	} // for loop
-	coordsX = coordsX[:len(coordsX)-1]       // REMOVE LAST ELEMENT
+	coordsX = coordsX[:len(coordsX)-1] // REMOVE LAST ELEMENT
 
 	dts = append([]float64{0}, dts...) // ADD ELEMENT FROM idx 0
 	dts = dts[:len(dts)-1]             // REMOVE LAST ELEMENT

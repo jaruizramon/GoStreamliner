@@ -6,8 +6,7 @@ import (
 
 func main() {
 
-	//actions.GetAdbCoords()
-	actions.Execute()
-
+	actions.GetAdbCoords()
+	//actions.Execute()
 
 }
