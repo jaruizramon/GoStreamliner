@@ -1,4 +1,4 @@
-package actions
+package excepts
 
 import (
 	"fmt"
@@ -11,7 +11,7 @@ import (
 	"time"
 )
 
-func Execute() {
+func ExecuteShitty() {
 
 	var (
 		x  string
@@ -27,7 +27,7 @@ func Execute() {
 	os.Chdir("adb")
 
 	var idx = 0
-	for idx <= df.Nrow()-1 {
+	for idx != df.Nrow() {
 
 		x = df.Elem(idx, 0).String()
 		y = df.Elem(idx, 1).String()
@@ -51,8 +51,8 @@ func Execute() {
 			var swipeActionString = df.Elem(idx, 2).String()
 			swipeArgs := strings.Split(swipeActionString, " ")
 
-			comm = exec.Command("adb", "shell", "input", "swipe", swipeArgs[1], swipeArgs[2], swipeArgs[3], swipeArgs[4], swipeArgs[5])
-			fmt.Println("adb", "shell", "input", "swipe", swipeArgs[1], swipeArgs[2], swipeArgs[3], swipeArgs[4], swipeArgs[5])
+			comm = exec.Command("adb shell input swipe", swipeArgs[1], swipeArgs[2], swipeArgs[3], swipeArgs[4], swipeArgs[5])
+			fmt.Println("adb shell input swipe", swipeArgs[1], swipeArgs[2], swipeArgs[3], swipeArgs[4], swipeArgs[5])
 			comm.Run()
 		} else {
 
