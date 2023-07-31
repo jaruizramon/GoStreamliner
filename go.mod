@@ -1,11 +1,10 @@
 module Gostreamliner
 
-go 1.20.5
+go 1.20
 
 require (
 	github.com/aarzilli/nucular v0.0.0-20230531140252-73505eb2e866
 	github.com/go-gota/gota v0.12.0
-	github.com/zach-klippenstein/goadb v0.0.0-20201208042340-620e0e950ed7
 	golang.org/x/sys v0.10.0
 )
 
@@ -20,7 +19,6 @@ require (
 	github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0 // indirect
 	github.com/hashicorp/golang-lru v0.5.1 // indirect
 	github.com/jezek/xgb v1.0.0 // indirect
-	github.com/zserge/lorca v0.1.10 // indirect
 	golang.org/x/exp v0.0.0-20221012211006-4de253d81b95 // indirect
 	golang.org/x/exp/shiny v0.0.0-20220827204233-334a2380cb91 // indirect
 	golang.org/x/image v0.5.0 // indirect

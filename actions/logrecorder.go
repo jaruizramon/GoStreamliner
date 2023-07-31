@@ -3,13 +3,14 @@ package actions
 import (
 	"bufio"
 	"fmt"
-	"golang.org/x/sys/windows"
 	"log"
 	"os"
 	"os/exec"
 	"strconv"
 	"strings"
 	"time"
+
+	"golang.org/x/sys/windows"
 )
 
 // vars START
@@ -22,11 +23,12 @@ var (
 	coordX, coordY   int64
 	coordsX, coordsY []int64
 	dts              []float64
+	swipes           []string
 )
 
 // vars END
 
-func GetAdbCoords() {
+func GetAdbCoords() byte {
 
 	s := "cd adb"
 	args := strings.Split(s, " ")
@@ -54,6 +56,7 @@ func GetAdbCoords() {
 			isQuit = true
 			break
 		}
+
 		time.Sleep(time.Millisecond * 1)
 		if reinitTimer == true {
 			start = time.Now()
@@ -98,7 +101,7 @@ func GetAdbCoords() {
 			}
 		}
 		// PROBLEM END
-		time.Sleep(1 * time.Millisecond)
+		time.Sleep(10 * time.Millisecond)
 	} // for loop
 	coordsX = coordsX[:len(coordsX)-1] // REMOVE LAST ELEMENT
 
@@ -118,34 +121,54 @@ func GetAdbCoords() {
 	var session []string
 
 	if len(coordsX) == len(coordsY) && len(coordsX) == len(dts) {
+		swipeIdx := 0
 		for i := range coordsX {
 			if dts[i] > 0.1 {
-				s = fmt.Sprintf("%d,%d,%.2f\n", coordsX[i], coordsY[i], dts[i])
+				s = fmt.Sprintf("%d,%d,%.2f,%s\n", coordsX[i], coordsY[i], dts[i], " ")
 				session = append(session, s)
+			} else if dts[i] < 0 {
+				s = fmt.Sprintf("%d,%d,%d,%s\n", -1, -1, -1, swipes[swipeIdx])
+				session = append(session, s)
+				swipeIdx++
+
 			}
 		}
 	}
-	session = removeDuplicateStr(session)
+	// session = removeDuplicateStr(session)
 	for i := range session {
 		filePopulator.WriteString(session[i])
 	}
 	filePopulator.Flush()
 	file.Close()
+
+	return 0
 } // func
 
-func removeDuplicateStr(strSlice []string) []string {
-	allKeys := make(map[string]bool)
-	list := []string{}
-	for _, item := range strSlice {
-		if _, value := allKeys[item]; !value {
-			allKeys[item] = true
-			list = append(list, item)
-		}
-	}
-	return list
-}
+// func removeDuplicateStr(strSlice []string) []string {
+// 	allKeys := make(map[string]bool)
+// 	list := []string{}
+// 	for _, item := range strSlice {
+// 		if _, value := allKeys[item]; !value {
+// 			allKeys[item] = true
+// 			list = append(list, item)
+// 		}
+// 	}
+// 	return list
+// }
 
 func wasESCPressed() bool {
 	r1, _, _ := GetKeyState.Call(27) // Call API to get ESC key state.
 	return r1 == 65409               // Code for KEY_UP event of ESC key.
+}
+
+func SwipeDown() {
+	appendableSwipeString := "adb shell input swipe 690 450 690 400 100"
+	swipes = append(swipes, appendableSwipeString)
+	coordsX = append(coordsX, -1)
+	coordsY = append(coordsY, -1)
+	dts = append(dts, -1)
+	appndS := strings.Split(appendableSwipeString, " ")
+	sp := exec.Command(appndS[0], appndS[1:]...)
+	sp.Run()
+
 }

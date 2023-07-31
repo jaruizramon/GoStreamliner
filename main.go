@@ -1,9 +1,12 @@
 package main
 
 import (
-	"Gostreamliner/actions"
+	"fmt"
+
 	"github.com/aarzilli/nucular"
 	"github.com/aarzilli/nucular/style"
+
+	"Gostreamliner/actions"
 )
 
 func main() {
@@ -15,13 +18,18 @@ func main() {
 }
 
 func updatefn(w *nucular.Window) {
-	w.Row(50).Dynamic(1)
+	w.RowScaled(50).Dynamic(1)
+
 	if w.ButtonText("RECORD ADB INPUT") {
-		actions.GetAdbCoords()
+		go actions.GetAdbCoords()
+
 	} else if w.ButtonText("EXECUTE RECORDED ADB INPUT") {
-		actions.Execute()
+		go actions.Execute()
+
 	} else if w.ButtonText("EXECUTE ALL TEST CASES") {
-		actions.Execute()
+		fmt.Println("NOT AVAILABLE NOW!")
+	} else if w.ButtonText("SWIPE DOWN") {
+		go actions.SwipeDown()
 	}
 
 }

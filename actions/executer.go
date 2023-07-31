@@ -2,13 +2,14 @@ package actions
 
 import (
 	"fmt"
-	"github.com/go-gota/gota/dataframe"
 	"io/ioutil"
 	"os"
 	"os/exec"
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/go-gota/gota/dataframe"
 )
 
 func Execute() {
@@ -33,27 +34,17 @@ func Execute() {
 		y = df.Elem(idx, 1).String()
 		dt = df.Elem(idx, 2).String()
 
-		//xInt, _ := strconv.ParseInt(x, 10, 32)
-		//yInt, _ := strconv.ParseInt(y, 10, 32)
 		dtFloat, _ := strconv.ParseFloat(dt, 32)
-
-		//xs = append(xs,xInt)
-		//ys = append(ys,yInt)
-		//dts = append(dts,dtFloat)
-
-		//subCommand := fmt.Sprintf("adb.exe shell input tap %s %s\n", x , y)
-
-		//subCommandArgs := strings.Split(subCommand, " ")
-		//exec.Command(subCommandArgs[0], subCommandArgs[1:]...)
 		cwd, _ := os.Getwd()
 
-		if x == "" || x == "NaN" || y == "" || y == "NaN" {
-			var swipeActionString = df.Elem(idx, 2).String()
-			swipeArgs := strings.Split(swipeActionString, " ")
+		if x == "-1" {
+			swipe := df.Elem(idx, 3).String()
 
-			comm = exec.Command("adb", "shell", "input", "swipe", swipeArgs[1], swipeArgs[2], swipeArgs[3], swipeArgs[4], swipeArgs[5])
-			fmt.Println("adb", "shell", "input", "swipe", swipeArgs[1], swipeArgs[2], swipeArgs[3], swipeArgs[4], swipeArgs[5])
-			comm.Run()
+			swiper := strings.Split(swipe, " ")
+			swiper = append([]string{cwd + "\\adb.exe"}, swiper...)
+			comm = exec.Command(swiper[0], swiper[1:]...)
+			fmt.Println(swiper)
+
 		} else {
 
 			comm = exec.Command(cwd+"\\adb.exe", "shell", "input", "tap", x, y)
@@ -69,4 +60,6 @@ func Execute() {
 
 	}
 
+	idx = 0
+	fmt.Println("EXECUTE END.")
 }
