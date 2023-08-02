@@ -1,65 +1,77 @@
 package actions
 
 import (
+	"encoding/csv"
 	"fmt"
-	"io/ioutil"
+	"io"
+	"log"
 	"os"
 	"os/exec"
 	"strconv"
 	"strings"
 	"time"
+)
 
-	"github.com/go-gota/gota/dataframe"
+var (
+	x     string
+	y     string
+	dt    string
+	swipe string
+	comm  = exec.Command(" ")
 )
 
 func Execute() {
+	comm.Start()
 
-	var (
-		x  string
-		y  string
-		dt string
-	)
-
-	rawContent, _ := ioutil.ReadFile("testcase.csv")
-	ioContent := strings.NewReader(string(rawContent))
-	df := dataframe.ReadCSV(ioContent)
-	comm := exec.Command(" ")
-
-	os.Chdir("adb")
-
-	var idx = 0
-	for idx <= df.Nrow()-1 {
-
-		x = df.Elem(idx, 0).String()
-		y = df.Elem(idx, 1).String()
-		dt = df.Elem(idx, 2).String()
-
-		dtFloat, _ := strconv.ParseFloat(dt, 32)
-		cwd, _ := os.Getwd()
-
-		if x == "-1" {
-			swipe := df.Elem(idx, 3).String()
-
-			swiper := strings.Split(swipe, " ")
-			swiper = append([]string{cwd + "\\adb.exe"}, swiper...)
-			comm = exec.Command(swiper[0], swiper[1:]...)
-			fmt.Println(swiper)
-
-		} else {
-
-			comm = exec.Command(cwd+"\\adb.exe", "shell", "input", "tap", x, y)
-			fmt.Println(fmt.Sprintf("{ x -> %s | y -> %s | Zzz -> %s}", x, y, dt))
-			//fmt.Println(cwd+"\\adb.exe", "shell", "input", "tap", x, y)
-			comm.Run()
-		}
-
-		//fmt.Println(cwd)
-
-		time.Sleep(time.Duration(dtFloat) * time.Second)
-		idx += 1
-
+	// open file
+	f, err := os.Open("testy.csv")
+	if err != nil {
+		log.Fatal(err)
 	}
 
-	idx = 0
-	fmt.Println("EXECUTE END.")
+	// remember to close the file at the end of the program
+	defer f.Close()
+
+	os.Chdir("adb")
+	cwd, _ := os.Getwd()
+	csvReader := csv.NewReader(f)
+	for {
+		action, err := csvReader.Read()
+		if err == io.EOF || action == nil {
+			break
+		}
+		if err != nil {
+			log.Fatal(err)
+		}
+		x = action[0]
+		y = action[1]
+		dt = action[2]
+		swipe = action[3]
+		// do something with read line
+		fmt.Printf("%+v\n", action)
+
+		if x == "-1" && y == "-1" {
+
+			fmt.Println(len(swipe))
+			swiper := string([]rune(swipe)[30:])
+			fmt.Println(swipe)
+			swipeArg := strings.Split(swiper, " ")
+			comm = exec.Command(swipeArg[0], swipeArg[1:]...)
+			comm.Run()
+			fmt.Println(cwd, swipeArg[1], swipeArg[2], swipeArg[3], swipeArg[4], swipeArg[5], swipeArg[6], swipeArg[7], swipeArg[8])
+
+		} else if swipe == " " || swipe == "" {
+			comm = exec.Command(cwd+"\\adb.exe", "shell", "input", "tap", x, y)
+			comm.Run()
+			fmt.Println(fmt.Sprintf("{ x -> %s | y -> %s | Zzz -> %s}", x, y, dt))
+
+			//fmt.Println(cwd+"\\adb.exe", "shell", "input", "tap", x, y)
+
+		}
+		sleep, _ := strconv.ParseFloat(dt, 64)
+		time.Sleep(time.Duration(sleep) * time.Second)
+	}
+
+	fmt.Println("END.")
+
 }

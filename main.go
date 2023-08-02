@@ -14,6 +14,7 @@ func main() {
 	wnd := nucular.NewMasterWindow(0, "ADB RECORDER LITE!", updatefn)
 	wnd.SetStyle(style.FromTheme(style.DarkTheme, 2.0))
 	wnd.Main()
+	actions.GetAdbCoords()
 
 }
 
@@ -24,12 +25,12 @@ func updatefn(w *nucular.Window) {
 		go actions.GetAdbCoords()
 
 	} else if w.ButtonText("EXECUTE RECORDED ADB INPUT") {
-		go actions.Execute()
+		go actions.ExecuteShell()
 
 	} else if w.ButtonText("EXECUTE ALL TEST CASES") {
 		fmt.Println("NOT AVAILABLE NOW!")
 	} else if w.ButtonText("SWIPE DOWN") {
-		go actions.SwipeDown()
+		go actions.Swipe("down")
 	}
 
 }

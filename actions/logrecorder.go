@@ -24,6 +24,8 @@ var (
 	coordsX, coordsY []int64
 	dts              []float64
 	swipes           []string
+	start            = time.Now() // declaration
+	reinitTimer      = true
 )
 
 // vars END
@@ -33,23 +35,25 @@ func GetAdbCoords() byte {
 	s := "cd adb"
 	args := strings.Split(s, " ")
 
-	changeDir := exec.Command(args[0], args[1:]...)
+	cmd := exec.Command(args[0], args[1:]...)
 	time.Sleep(3 * time.Second)
-	fmt.Println(changeDir.Stdout)
+	fmt.Println(cmd.Stdout)
 
-	s2 := "adb shell getevent"
-	args2 := strings.Split(s2, " ")
+	s = "adb shell getevent"
+	args2 := strings.Split(s, " ")
 	var isQuit = false
 
-	cmd := exec.Command(args2[0], args2[1:]...)
+	cmd = exec.Command(args2[0], args2[1:]...)
 	stdout, err := cmd.StdoutPipe()
 	if err != nil {
 		log.Fatal("log ->", err)
 	}
 	cmd.Start()
+
+
+	
 	buf := bufio.NewReader(stdout)
-	var reinitTimer = true
-	start := time.Now() // declaration
+	reinitTimer = true
 
 	for isQuit == false {
 		if wasESCPressed() {
@@ -88,29 +92,38 @@ func GetAdbCoords() byte {
 			appendableString = "loading..."
 		}
 		// PROBLEM START
-		var duration float64
+		var estrin strings.Builder
+		var dt float64
 		if coordX != 0 {
-			coordsX = append(coordsX, coordX)
-			fmt.Printf("\n(%d ,", coordX)
+			//coordsX = append(coordsX, coordX)
+			estrin.WriteString(fmt.Sprintf("%v,", coordX))
+			//fmt.Printf("\n(%d ,", coordX)
 			if coordY != 0 {
-				coordsY = append(coordsY, coordY)
-				duration = time.Since(start).Seconds()
-				dts = append(dts, duration)
+				//coordsY = append(coordsY, coordY)
+				estrin.WriteString(fmt.Sprintf("%v,", coordY))
+				dt = time.Since(start).Seconds()
+				//dts = append(dts, duration)
+				estrin.WriteString(fmt.Sprintf("%.2f,\n", dt)) // %.2f
+				if dt < 0.011 == false {
+					fmt.Print(estrin.String())
+					session = append(session, estrin.String())
+				}
 				reinitTimer = true
-				fmt.Printf(" %d) ---> %.2fs", coordY, duration)
 			}
 		}
+
+		estrin.Reset()
+
 		// PROBLEM END
 		time.Sleep(10 * time.Millisecond)
 	} // for loop
-	coordsX = coordsX[:len(coordsX)-1] // REMOVE LAST ELEMENT
-
-	dts = append([]float64{0}, dts...) // ADD ELEMENT FROM idx 0
-	dts = dts[:len(dts)-1]             // REMOVE LAST ELEMENT
+	// coordsX = coordsX[:len(coordsX)-1] // REMOVE LAST ELEMENT
+	// dts = append([]float64{1}, dts...) // ADD ELEMENT FROM idx 0
+	// dts = dts[:len(dts)-1]             // REMOVE LAST ELEMENT
 
 	fmt.Println("\n\nConsole end")
 
-	file, err := os.OpenFile("testcase.csv", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	file, err := os.OpenFile("testy.csv", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 	if err != nil {
 		log.Fatalf("failed creating file: %s", err)
 	}
@@ -118,23 +131,7 @@ func GetAdbCoords() byte {
 
 	fmt.Printf("%d %d %d", len(coordsX), len(coordsY), len(dts))
 
-	var session []string
-
-	if len(coordsX) == len(coordsY) && len(coordsX) == len(dts) {
-		swipeIdx := 0
-		for i := range coordsX {
-			if dts[i] > 0.1 {
-				s = fmt.Sprintf("%d,%d,%.2f,%s\n", coordsX[i], coordsY[i], dts[i], " ")
-				session = append(session, s)
-			} else if dts[i] < 0 {
-				s = fmt.Sprintf("%d,%d,%d,%s\n", -1, -1, -1, swipes[swipeIdx])
-				session = append(session, s)
-				swipeIdx++
-
-			}
-		}
-	}
-	// session = removeDuplicateStr(session)
+	session = removeDuplicateStr(session)
 	for i := range session {
 		filePopulator.WriteString(session[i])
 	}
@@ -144,31 +141,56 @@ func GetAdbCoords() byte {
 	return 0
 } // func
 
-// func removeDuplicateStr(strSlice []string) []string {
-// 	allKeys := make(map[string]bool)
-// 	list := []string{}
-// 	for _, item := range strSlice {
-// 		if _, value := allKeys[item]; !value {
-// 			allKeys[item] = true
-// 			list = append(list, item)
-// 		}
-// 	}
-// 	return list
-// }
+func removeDuplicateStr(strSlice []string) []string {
+	allKeys := make(map[string]bool)
+	list := []string{}
+	for _, item := range strSlice {
+		if _, value := allKeys[item]; !value {
+			allKeys[item] = true
+			list = append(list, item)
+		}
+	}
+	return list
+}
 
 func wasESCPressed() bool {
 	r1, _, _ := GetKeyState.Call(27) // Call API to get ESC key state.
 	return r1 == 65409               // Code for KEY_UP event of ESC key.
 }
 
-func SwipeDown() {
-	appendableSwipeString := "adb shell input swipe 690 450 690 400 100"
+func Swipe(direction string) {
+
+	var param string
+	var estrin strings.Builder
+	dt := time.Since(start).Seconds()
+
+	switch direction {
+	case "up":
+		param = "690 400 690 450 100"
+	case "down":
+		param = "690 450 690 400 100"
+	case "left":
+		param = "690 450 690 400 100" // tbc
+	case "right":
+		param = "690 450 690 400 100" // tbc
+	}
+
+	uniqueTime := time.Now()
+	fmtTime := uniqueTime.Format(time.UnixDate)
+
+	appendableSwipeString := fmt.Sprintf("%s->adb shell input swipe %s", fmtTime, param)
+	fmt.Println(appendableSwipeString)
+
 	swipes = append(swipes, appendableSwipeString)
-	coordsX = append(coordsX, -1)
-	coordsY = append(coordsY, -1)
-	dts = append(dts, -1)
-	appndS := strings.Split(appendableSwipeString, " ")
+	swiper := string([]rune(appendableSwipeString)[30:])
+	// coordsX = append(coordsX, -1)
+	// coordsY = append(coordsY, -1
+
+	estrin.WriteString(fmt.Sprintf("%v,%v,%v,%v", -1, -1, dt, appendableSwipeString))
+	appndS := strings.Split(swiper, " ")
+	session = append(session, estrin.String()+"\n")
 	sp := exec.Command(appndS[0], appndS[1:]...)
+
 	sp.Run()
 
 }
