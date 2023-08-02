@@ -29,8 +29,14 @@ func updatefn(w *nucular.Window) {
 
 	} else if w.ButtonText("EXECUTE ALL TEST CASES") {
 		fmt.Println("NOT AVAILABLE NOW!")
-	} else if w.ButtonText("SWIPE DOWN") {
+	} else if w.ButtonText("DOWN") {
 		go actions.Swipe("down")
+	} else if w.ButtonText("UP") {
+		go actions.Swipe("up")
+	} else if w.ButtonText("LEFT") {
+		go actions.Swipe("left")
+	} else if w.ButtonText("RIGHT") {
+		go actions.Swipe("right")
 	}
 
 }

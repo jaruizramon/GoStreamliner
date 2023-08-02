@@ -53,22 +53,34 @@ func ExecuteShell() {
 		dt = action[2]
 		swipe = action[3]
 
+		fmt.Printf("%s %s %s %s \n", x,y,dt,swipe)
 
 
+
+		var swiper string
+
+		if len(swipe) <= 52{
+			swiper = ""
+		} else {
+			swiper = string([]rune(swipe)[52:])
+		}
+// PROBLEM START
+		var commandy string
 		if x != "-1" && y != "-1" { // if swipe
-			shellString.WriteString(fmt.Sprintf("input tap %s %s && sleep %s &&\n", x, y,dt))
+			commandy = fmt.Sprintf("input tap %s %s && sleep %s && \n", x, y,dt)
+			shellString.WriteString(commandy)
+			fmt.Printf("%s %s %s %s \n", x,y,dt,swipe)
 		} else { // it's a tap!
-			shellString.WriteString(fmt.Sprintf("input swipe %s & sleep %s &&\n", swipe, dt))
+			commandy = fmt.Sprintf("input swipe %s && sleep %s && \n", swiper, dt)
+			shellString.WriteString(commandy)
+			fmt.Printf("%s %s %s %s \n", x,y,dt,swipe)
 		}
 
 	}
-	fmt.Println(executableString)
-	cmd := exec.Command(cwd, commands[0], commands[1], executableString)
-	fmt.Printf("%s %s %s %s", cwd, commands[0], commands[1], executableString)
-	cmd.Run()
-
-
-	fmt.Println("END.")
-
+	cmd := exec.Command(cwd, commands[1], executableString)
+	fmt.Printf("%s %s%s", cwd, commands[1], executableString)
 	
+// PROBLEM
+	
+	cmd.Run()
 }

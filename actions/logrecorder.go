@@ -166,13 +166,13 @@ func Swipe(direction string) {
 
 	switch direction {
 	case "up":
-		param = "690 400 690 450 100"
+		param = "690 400 690 450 200"
 	case "down":
-		param = "690 450 690 400 100"
+		param = "690 450 690 400 200"
 	case "left":
-		param = "690 450 690 400 100" // tbc
+		param = "690 450 690 400 200" // tbc
 	case "right":
-		param = "690 450 690 400 100" // tbc
+		param = "690 450 690 400 200" // tbc
 	}
 
 	uniqueTime := time.Now()
