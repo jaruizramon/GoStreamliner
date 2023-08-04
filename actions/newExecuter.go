@@ -40,8 +40,7 @@ func ExecuteShell() {
 		action, err := csvReader.Read()
 		if err == io.EOF || action == nil {
 			closeQuote := shellString.String()
-			closeQuote = closeQuote[:len(shellString.String())-3]
-			closeQuote = closeQuote + "\""
+			closeQuote = closeQuote[:len(shellString.String())-3] + "\""
 			executableString = closeQuote
 			break
 		}
@@ -60,7 +59,7 @@ func ExecuteShell() {
 		var swiper string
 
 		if len(swipe) <= 52{
-			swiper = ""
+			swiper = " "
 		} else {
 			swiper = string([]rune(swipe)[52:])
 		}

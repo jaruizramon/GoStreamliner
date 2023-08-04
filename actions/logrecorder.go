@@ -104,7 +104,7 @@ func GetAdbCoords() byte {
 				dt = time.Since(start).Seconds()
 				//dts = append(dts, duration)
 				estrin.WriteString(fmt.Sprintf("%.2f,\n", dt)) // %.2f
-				if dt < 0.011 == false {
+				if dt > 0.011 {
 					fmt.Print(estrin.String())
 					session = append(session, estrin.String())
 				}
@@ -123,7 +123,7 @@ func GetAdbCoords() byte {
 
 	fmt.Println("\n\nConsole end")
 
-	file, err := os.OpenFile("testy.csv", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	file, err := os.OpenFile("testy.csv", os.O_CREATE|os.O_WRONLY, 0644)
 	if err != nil {
 		log.Fatalf("failed creating file: %s", err)
 	}
@@ -166,13 +166,13 @@ func Swipe(direction string) {
 
 	switch direction {
 	case "up":
-		param = "690 400 690 450 200"
+		param = "690 400 690 450 100"
 	case "down":
-		param = "690 450 690 400 200"
+		param = "690 450 690 400 100"
 	case "left":
-		param = "690 450 690 400 200" // tbc
+		param = "690 450 690 400 100" // tbc
 	case "right":
-		param = "690 450 690 400 200" // tbc
+		param = "690 450 690 400 100" // tbc
 	}
 
 	uniqueTime := time.Now()
@@ -184,7 +184,7 @@ func Swipe(direction string) {
 	swipes = append(swipes, appendableSwipeString)
 	swiper := string([]rune(appendableSwipeString)[30:])
 	// coordsX = append(coordsX, -1)
-	// coordsY = append(coordsY, -1
+	// coordsY = append(coordsY, -1)
 
 	estrin.WriteString(fmt.Sprintf("%v,%v,%v,%v", -1, -1, dt, appendableSwipeString))
 	appndS := strings.Split(swiper, " ")
