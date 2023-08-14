@@ -1,0 +1,486 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<hierarchy rotation="0">
+    <node index="0" text="" resource-id="" class="android.widget.FrameLayout"
+        package="com.geappliances.cooking.rev1" content-desc="" checkable="false"
+        checked="
+    false" clickable="false" enabled="true" focusable="false" focused="false"
+        scrollable="false" long-clickable="false" password="false" selected="false"
+        bounds="[0,0][1024,600]">
+        <node index="0" text="" resource-id="" class="android.widget.L
+    inearLayout"
+            package="com.geappliances.cooking.rev1" content-desc="" checkable="false"
+            checked="false" clickable="false" enabled="true" focusable="false" focused="false"
+            scrollable="false" long-clickable="false" password="false" selected="false"
+            bounds="[0,0][1024,600]">
+            <node index="0" text="" resource-id="android:id/content"
+                class="android.widget.FrameLayout" package="com.geappliances.cooking.rev1"
+                content-desc="" checkable="false" checked="false" clickable="false" ena
+                bled="true" focusable="false" focused="false" scrollable="false"
+                long-clickable="false" password="false" selected="false" bounds="[0,0][1024,600]">
+                <node index="0" text="" resource-id="" class="android.widget.FrameLayout"
+                    package="com.gea
+    ppliances.cooking.rev1" content-desc="" checkable="false"
+                    checked="false" clickable="false" enabled="true" focusable="true"
+                    focused="false" scrollable="false" long-clickable="false" password="false"
+                    selected="false" bounds="[0,0][1024,60
+    0]">
+                    <node index="0" text="" resource-id="" class="android.view.View"
+                        package="com.geappliances.cooking.rev1" content-desc="" checkable="false"
+                        checked="false" clickable="false" enabled="true" focusable="false"
+                        focused="false" scrollable="false" long-clickable="false" password="false"
+                        selected="false" bounds="[0,0][1024,600]">
+                        <node index="0" text="" resource-id="" class="android.view.View"
+                            package="com.geappliances.cooking.rev1" content-desc=""
+                            checkable="false" checked="false" clickable="false" enabled="true"
+                            focusable="false" focused="false" scrollable="false"
+                            long-clickable="false" password="false" selected="false"
+                            bounds="[0,0][1024,600]">
+                            <node index="0" text="" resource-id="" class="android.view.Vi
+    ew"
+                                package="com.geappliances.cooking.rev1" content-desc=""
+                                checkable="false" checked="false" clickable="false" enabled="true"
+                                focusable="false" focused="false" scrollable="false"
+                                long-clickable="false" password="false" selected="false"
+                                bounds="[0,0][1024,600]">
+                                <node index="0" text="" resource-id="" class="android.view.View"
+                                    package="com.geappliances.cooking.rev1" content-desc=""
+                                    checkable="false" checked="false" clickable="false"
+                                    enabled="true" focusable="false" focuse
+                                    d="false" scrollable="false" long-clickable="false"
+                                    password="false" selected="false" bounds="[0,0][1024,600]">
+                                    <node index="0" text="" resource-id="" class="android.view.View"
+                                        package="com.geappliances.cooking.rev1" content-desc="" check
+                                        able="false" checked="false" clickable="false"
+                                        enabled="true" focusable="false" focused="false"
+                                        scrollable="false" long-clickable="false" password="false"
+                                        selected="false" bounds="[0,0][1024,600]">
+                                        <node index="0" text="" resource-id="" c
+                                            lass="android.view.View"
+                                            package="com.geappliances.cooking.rev1" content-desc=""
+                                            checkable="false" checked="false" clickable="false"
+                                            enabled="true" focusable="false" focused="false"
+                                            scrollable="false" long-clickable="false"
+                                            password="fal
+    se" selected="false"
+                                            bounds="[0,0][1024,600]">
+                                            <node NAF="true" index="0" text="" resource-id=""
+                                                class="android.widget.Button"
+                                                package="com.geappliances.cooking.rev1"
+                                                content-desc="" checkable="false" checked="false"
+                                                clickable="true" enab
+                                                led="true" focusable="true" focused="false"
+                                                scrollable="false" long-clickable="false"
+                                                password="false" selected="false"
+                                                bounds="[0,0][90,86]" />
+                                            <node index="1" text="" resource-id=""
+                                                class="android.view.View"
+                                                package="com.geappliances.co
+    oking.rev1"
+                                                content-desc="" checkable="false" checked="false"
+                                                clickable="true" enabled="true" focusable="true"
+                                                focused="false" scrollable="false"
+                                                long-clickable="false" password="false"
+                                                selected="false" bounds="[0,0][1024,600]">
+                                                <node ind
+                                                    ex="0" text="" resource-id=""
+                                                    class="android.view.View"
+                                                    package="com.geappliances.cooking.rev1"
+                                                    content-desc="" checkable="false"
+                                                    checked="false" clickable="false" enabled="true"
+                                                    focusable="false" focused="false"
+                                                    scrollable="false" long-
+                                                    clickable="false" password="false"
+                                                    selected="false" bounds="[0,0][1024,600]">
+                                                    <node index="0" text="" resource-id=""
+                                                        class="android.view.View"
+                                                        package="com.geappliances.cooking.rev1"
+                                                        content-desc="" checkable="false"
+                                                        checked="false" click
+                                                        able="false" enabled="true"
+                                                        focusable="false" focused="false"
+                                                        scrollable="false" long-clickable="false"
+                                                        password="false" selected="false"
+                                                        bounds="[0,0][1024,600]">
+                                                        <node index="0" text="" resource-id=""
+                                                            class="android.view.View"
+                                                            package="
+    com.geappliances.cooking.rev1"
+                                                            content-desc="" checkable="false"
+                                                            checked="false" clickable="false"
+                                                            enabled="true" focusable="false"
+                                                            focused="false" scrollable="false"
+                                                            long-clickable="false" password="false"
+                                                            selected="false"
+                                                            bounds="[0,0]
+    [1024,600]">
+                                                            <node index="0" text="" resource-id=""
+                                                                class="android.view.View"
+                                                                package="com.geappliances.cooking.rev1"
+                                                                content-desc="COOKING"
+                                                                checkable="false" checked="false"
+                                                                clickable="false" enabled="true"
+                                                                focusable="true"
+                                                                focused="fals
+    e"
+                                                                scrollable="false"
+                                                                long-clickable="false"
+                                                                password="false" selected="false"
+                                                                bounds="[481,122][604,158]" />
+                                                            <node index="1" text="" resource-id=""
+                                                                class="android.view.View"
+                                                                package="com.geappliances.cooking.rev1"
+                                                                content-desc="" checkab
+                                                                le="false" checked="false"
+                                                                clickable="false" enabled="true"
+                                                                focusable="false" focused="false"
+                                                                scrollable="false"
+                                                                long-clickable="false"
+                                                                password="false" selected="false"
+                                                                bounds="[102,190][922,510]">
+                                                                <node index="0" text=""
+                                                                    resource-id=""
+                                                                    class="android.view.View"
+                                                                    package="com.geappliances.cooking.rev1"
+                                                                    content-desc=""
+                                                                    checkable="false"
+                                                                    checked="false"
+                                                                    clickable="false" enabled="true"
+                                                                    focusable="false"
+                                                                    focused="false"
+                                                                    scrollable="true"
+                                                                    long-clickable="false"
+                                                                    password="fal
+    se"
+                                                                    selected="false"
+                                                                    bounds="[102,190][922,510]">
+                                                                    <node index="0" text=""
+                                                                        resource-id=""
+                                                                        class="android.view.View"
+                                                                        package="com.geappliances.cooking.rev1"
+                                                                        content-desc="Cooking Unit"
+                                                                        checkable="false"
+                                                                        checked="false"
+                                                                        clickable="false" ena
+                                                                        bled="true" focusable="true"
+                                                                        focused="false"
+                                                                        scrollable="false"
+                                                                        long-clickable="false"
+                                                                        password="false"
+                                                                        selected="false"
+                                                                        bounds="[102,190][922,242]">
+                                                                        <node index="0" text=""
+                                                                            resource-id=""
+                                                                            class="android.view.View"
+                                                                            package="com.geapplianc
+    es.cooking.rev1"
+                                                                            content-desc="°F"
+                                                                            checkable="false"
+                                                                            checked="false"
+                                                                            clickable="true"
+                                                                            enabled="true"
+                                                                            focusable="true"
+                                                                            focused="false"
+                                                                            scrollable="false"
+                                                                            long-clickable="false"
+                                                                            password="false"
+                                                                            selected="false"
+                                                                            bounds="[813,200][850,232]"
+                                                                        />
+                                                                        <node index="1" text=""
+                                                                            resource-id=""
+                                                                            class="android.view.View"
+                                                                            package="com.geappliances.cooking.rev1"
+                                                                            content-desc="°C"
+                                                                            checkable="false"
+                                                                            checked="false"
+                                                                            clickable="true"
+                                                                            enabled="true"
+                                                                            focusable="true"
+                                                                            focused="false"
+                                                                            scrollable="
+    false"
+                                                                            long-clickable="false"
+                                                                            password="false"
+                                                                            selected="false"
+                                                                            bounds="[870,200][912,232]" />
+                                                                    </node>
+                                                                    <node index="1" text=""
+                                                                        resource-id=""
+                                                                        class="android.view.View"
+                                                                        package="com.geappliances.cooking.rev1"
+                                                                        content-desc="Auto Recipe Conve
+    rsion"
+                                                                        checkable="false"
+                                                                        checked="false"
+                                                                        clickable="false"
+                                                                        enabled="true"
+                                                                        focusable="true"
+                                                                        focused="false"
+                                                                        scrollable="false"
+                                                                        long-clickable="false"
+                                                                        password="false"
+                                                                        selected="false"
+                                                                        bounds="[102,258][922,326]">
+                                                                        <node NAF="true" index="0"
+                                                                            text="" resource-id=""
+                                                                            class="android.view.View"
+                                                                            package="com.geappliances.cooking.rev1"
+                                                                            content-desc=""
+                                                                            checkable="false"
+                                                                            checked="false"
+                                                                            clickable="true"
+                                                                            enabled="true"
+                                                                            focusable="true"
+                                                                            focused="false"
+                                                                            scrollable="false" long-clickabl
+                                                                            e="false"
+                                                                            password="false"
+                                                                            selected="false"
+                                                                            bounds="[358,262][419,323]" />
+                                                                        <node index="1" text=""
+                                                                            resource-id=""
+                                                                            class="android.view.View"
+                                                                            package="com.geappliances.cooking.rev1"
+                                                                            content-desc="ON"
+                                                                            checkable="false"
+                                                                            checked="false" clicka
+                                                                            ble="true"
+                                                                            enabled="true"
+                                                                            focusable="true"
+                                                                            focused="false"
+                                                                            scrollable="false"
+                                                                            long-clickable="false"
+                                                                            password="false"
+                                                                            selected="false"
+                                                                            bounds="[730,270][772,314]" />
+                                                                        <node NAF="true" index="2"
+                                                                            text="" resource-id=""
+                                                                            class="android.widget.
+    Switch"
+                                                                            package="com.geappliances.cooking.rev1"
+                                                                            content-desc=""
+                                                                            checkable="true"
+                                                                            checked="true"
+                                                                            clickable="true"
+                                                                            enabled="true"
+                                                                            focusable="true"
+                                                                            focused="false"
+                                                                            scrollable="false"
+                                                                            long-clickable="false"
+                                                                            password="false"
+                                                                            selected="false"
+                                                                            bounds="[773,261][851,324]" />
+                                                                        <node index="3" text=""
+                                                                            resource-id=""
+                                                                            class="android.view.View"
+                                                                            package="com.geappliances.cooking.rev1"
+                                                                            content-desc="OFF"
+                                                                            checkable="false"
+                                                                            checked="false"
+                                                                            clickable="true"
+                                                                            enabled="true"
+                                                                            focusable="true"
+                                                                            focused="false"
+                                                                            scrollable="false"
+                                                                            long-clickable="false"
+                                                                            password="false"
+                                                                            selected="false"
+                                                                            bounds="[852,270][902,314]" />
+                                                                    </node>
+                                                                    <node index="2" text=""
+                                                                        resource-id=""
+                                                                        class="android.view.View"
+                                                                        package="com.geappliances.cooking.rev1"
+                                                                        con
+                                                                        tent-desc="12 Hour Shutoff"
+                                                                        checkable="false"
+                                                                        checked="false"
+                                                                        clickable="false"
+                                                                        enabled="true"
+                                                                        focusable="true"
+                                                                        focused="false"
+                                                                        scrollable="false"
+                                                                        long-clickable="false"
+                                                                        password="false"
+                                                                        selected="false"
+                                                                        bounds="[102,342][922,410]">
+                                                                        <node
+                                                                            index="0" text=""
+                                                                            resource-id=""
+                                                                            class="android.view.View"
+                                                                            package="com.geappliances.cooking.rev1"
+                                                                            content-desc="ON"
+                                                                            checkable="false"
+                                                                            checked="false"
+                                                                            clickable="true"
+                                                                            enabled="true"
+                                                                            focusable="true"
+                                                                            focused="false"
+                                                                            scrollable="false" l
+                                                                            ong-clickable="false"
+                                                                            password="false"
+                                                                            selected="false"
+                                                                            bounds="[730,354][772,398]" />
+                                                                        <node NAF="true" index="1"
+                                                                            text="" resource-id=""
+                                                                            class="android.widget.Switch"
+                                                                            package="com.geappliances.cooking.rev1"
+                                                                            content-desc=""
+                                                                            checkable="true
+    "
+                                                                            checked="true"
+                                                                            clickable="true"
+                                                                            enabled="true"
+                                                                            focusable="true"
+                                                                            focused="false"
+                                                                            scrollable="false"
+                                                                            long-clickable="false"
+                                                                            password="false"
+                                                                            selected="false"
+                                                                            bounds="[773,345][851,408]" />
+                                                                        <node index="2" text=""
+                                                                            resource-id=""
+                                                                            class="and
+    roid.view.View"
+                                                                            package="com.geappliances.cooking.rev1"
+                                                                            content-desc="OFF"
+                                                                            checkable="false"
+                                                                            checked="false"
+                                                                            clickable="true"
+                                                                            enabled="true"
+                                                                            focusable="true"
+                                                                            focused="false"
+                                                                            scrollable="false"
+                                                                            long-clickable="false"
+                                                                            password="false" sele
+                                                                            cted="false"
+                                                                            bounds="[852,354][902,398]" />
+                                                                    </node>
+                                                                    <node index="3" text=""
+                                                                        resource-id=""
+                                                                        class="android.view.View"
+                                                                        package="com.geappliances.cooking.rev1"
+                                                                        content-desc="Adjust Temperature&#10;Upper Oven&#10;0&#10;Lower Oven&#10;0"
+                                                                        checka
+                                                                        ble="false" checked="false"
+                                                                        clickable="false"
+                                                                        enabled="true"
+                                                                        focusable="true"
+                                                                        focused="false"
+                                                                        scrollable="false"
+                                                                        long-clickable="false"
+                                                                        password="false"
+                                                                        selected="false"
+                                                                        bounds="[102,426][922,510]">
+                                                                        <node NAF="true" index="0"
+                                                                            text="" reso
+                                                                            urce-id=""
+                                                                            class="android.view.View"
+                                                                            package="com.geappliances.cooking.rev1"
+                                                                            content-desc=""
+                                                                            checkable="false"
+                                                                            checked="false"
+                                                                            clickable="true"
+                                                                            enabled="true"
+                                                                            focusable="true"
+                                                                            focused="false"
+                                                                            scrollable="false"
+                                                                            long-clickable="false" pas
+                                                                            sword="false"
+                                                                            selected="false"
+                                                                            bounds="[314,456][375,510]" />
+                                                                        <node index="1" text=""
+                                                                            resource-id=""
+                                                                            class="android.view.View"
+                                                                            package="com.geappliances.cooking.rev1"
+                                                                            content-desc="-"
+                                                                            checkable="false"
+                                                                            checked="false"
+                                                                            clickable="true" ena
+                                                                            bled="true"
+                                                                            focusable="true"
+                                                                            focused="false"
+                                                                            scrollable="false"
+                                                                            long-clickable="false"
+                                                                            password="false"
+                                                                            selected="false"
+                                                                            bounds="[752,426][812,486]" />
+                                                                        <node index="2" text=""
+                                                                            resource-id=""
+                                                                            class="android.view.View"
+                                                                            package="com.geapplia
+    nces.cooking.rev1"
+                                                                            content-desc="-"
+                                                                            checkable="false"
+                                                                            checked="false"
+                                                                            clickable="true"
+                                                                            enabled="true"
+                                                                            focusable="true"
+                                                                            focused="false"
+                                                                            scrollable="false"
+                                                                            long-clickable="false"
+                                                                            password="false"
+                                                                            selected="false"
+                                                                            bounds="[752,486][812,510]
+    " />
+                                                                        <node index="3" text=""
+                                                                            resource-id=""
+                                                                            class="android.view.View"
+                                                                            package="com.geappliances.cooking.rev1"
+                                                                            content-desc="+"
+                                                                            checkable="false"
+                                                                            checked="false"
+                                                                            clickable="true"
+                                                                            enabled="true"
+                                                                            focusable="true"
+                                                                            focused="false"
+                                                                            scrollable="
+    false"
+                                                                            long-clickable="false"
+                                                                            password="false"
+                                                                            selected="false"
+                                                                            bounds="[862,426][922,486]" />
+                                                                        <node index="4" text=""
+                                                                            resource-id=""
+                                                                            class="android.view.View"
+                                                                            package="com.geappliances.cooking.rev1"
+                                                                            content-desc="+"
+                                                                            checkable="false" che
+                                                                            cked="false"
+                                                                            clickable="true"
+                                                                            enabled="true"
+                                                                            focusable="true"
+                                                                            focused="false"
+                                                                            scrollable="false"
+                                                                            long-clickable="false"
+                                                                            password="false"
+                                                                            selected="false"
+                                                                            bounds="[862,486][922,510]" />
+                                                                    </node>
+                                                                </node>
+                                                            </node>
+                                                        </node>
+                                                    </node>
+                                                </node>
+                                            </node>
+                                            <nod
+                                                e NAF="true" index="2" text="" resource-id=""
+                                                class="android.widget.Button"
+                                                package="com.geappliances.cooking.rev1"
+                                                content-desc="" checkable="false" checked="false"
+                                                clickable="true" enabled="true" focusable="true"
+                                                focused="false" scroll
+                                                able="false" long-clickable="false" password="false"
+                                                selected="false" bounds="[934,0][1024,86]" />
+                                        </node>
+                                    </node>
+                                </node>
+                            </node>
+                        </node>
+                    </node>
+                </node>
+            </node>
+        </node>
+    </node>
+</hierarchy>UI
+hierchary dumped to: /dev/tty

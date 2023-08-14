@@ -1,0 +1,10 @@
+{
+    "LOWER OVEN" : "/hierarchy/node/node/node/node/node/node/node/node/node/node/node[3]/node/node/node/node[2]",
+    "UPPER OVEN" : "/hierarchy/node/node/node/node/node/node/node/node/node/node/node[3]/node/node/node/node[1]",
+    "SMARTHQ" : "/hierarchy/node/node/node/node/node/node/node/node/node/node/node[6]",
+    "LIGHT KEY?" : "/hierarchy/node/node/node/node/node/node/node/node/node/node/node[4]",
+    "SETTINGS?" : "/hierarchy/node/node/node/node/node/node/node/node/node/node/node[5]",
+    "LOCK?" : "/hierarchy/node/node/node/node/node/node/node/node/node/node/node[7]"
+
+
+}

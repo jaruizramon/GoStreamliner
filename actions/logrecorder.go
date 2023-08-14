@@ -40,6 +40,7 @@ func GetAdbCoords() byte {
 	fmt.Println(cmd.Stdout)
 
 	s = "adb shell getevent"
+	//s = "adb -s 8CCX1ML3X shell getevent"
 	args2 := strings.Split(s, " ")
 	var isQuit = false
 
@@ -97,18 +98,19 @@ func GetAdbCoords() byte {
 		if coordX != 0 {
 			//coordsX = append(coordsX, coordX)
 			estrin.WriteString(fmt.Sprintf("%v,", coordX))
-			//fmt.Printf("\n(%d ,", coordX)
+			fmt.Printf("(%d ,", coordX)
 			if coordY != 0 {
 				//coordsY = append(coordsY, coordY)
 				estrin.WriteString(fmt.Sprintf("%v,", coordY))
 				dt = time.Since(start).Seconds()
 				//dts = append(dts, duration)
 				estrin.WriteString(fmt.Sprintf("%.2f,\n", dt)) // %.2f
-				if dt > 0.011 {
-					fmt.Print(estrin.String())
+				if dt > 0.05 { //  do not append the ittybitty microdecimal inputs that can fuck up the shell
+					//fmt.Print(estrin.String())
 					session = append(session, estrin.String())
 				}
 				reinitTimer = true
+				fmt.Printf("%d,%.2f)\n", coordY, dt)
 			}
 		}
 
@@ -162,7 +164,6 @@ func Swipe(direction string) {
 
 	var param string
 	var estrin strings.Builder
-	dt := time.Since(start).Seconds()
 
 	switch direction {
 	case "up":
@@ -186,11 +187,12 @@ func Swipe(direction string) {
 	// coordsX = append(coordsX, -1)
 	// coordsY = append(coordsY, -1)
 
-	estrin.WriteString(fmt.Sprintf("%v,%v,%v,%v", -1, -1, dt, appendableSwipeString))
+	estrin.WriteString(fmt.Sprintf("%v,%v,%v,%v", -1, -1, 2, appendableSwipeString))
 	appndS := strings.Split(swiper, " ")
 	session = append(session, estrin.String()+"\n")
 	sp := exec.Command(appndS[0], appndS[1:]...)
 
 	sp.Run()
+
 
 }

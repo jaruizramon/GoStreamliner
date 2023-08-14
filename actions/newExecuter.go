@@ -15,7 +15,7 @@ func ExecuteShell() {
 	var (
 		x string
 		y string
-		// dt    string
+		dt    string
 		shellString strings.Builder
 		swipe string
 	)
@@ -28,7 +28,7 @@ func ExecuteShell() {
 
 	// remember to close the file at the end of the program
 	defer f.Close()
-	commands := [2]string{"adb","shell \""}
+	commands := [3]string{"adb","shell \"","input tap 150 40 && "}
 
 	os.Chdir("adb")
 	cwd, _ := os.Getwd()
@@ -54,8 +54,6 @@ func ExecuteShell() {
 
 		fmt.Printf("%s %s %s %s \n", x,y,dt,swipe)
 
-
-
 		var swiper string
 
 		if len(swipe) <= 52{
@@ -70,14 +68,14 @@ func ExecuteShell() {
 			shellString.WriteString(commandy)
 			fmt.Printf("%s %s %s %s \n", x,y,dt,swipe)
 		} else { // it's a tap!
-			commandy = fmt.Sprintf("input swipe %s && sleep %s && \n", swiper, dt)
+			commandy = fmt.Sprintf("input swipe %s && sleep %s && \n" , swiper, "1.5")
 			shellString.WriteString(commandy)
 			fmt.Printf("%s %s %s %s \n", x,y,dt,swipe)
 		}
 
 	}
 	cmd := exec.Command(cwd, commands[1], executableString)
-	fmt.Printf("%s %s%s", cwd, commands[1], executableString)
+	fmt.Printf("adb %s%s", commands[1], executableString)
 	
 // PROBLEM
 	
