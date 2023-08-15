@@ -24,6 +24,8 @@ func updatefn(w *nucular.Window) {
 	if w.ButtonText("RECORD ADB INPUT") {
 		go actions.GetAdbCoords()
 
+	} else if w.ButtonText("STOP RECORDING") {
+		go actions.QuitRecording()
 	} else if w.ButtonText("EXECUTE RECORDED ADB INPUT") {
 		go actions.ExecuteShell()
 

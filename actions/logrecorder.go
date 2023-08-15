@@ -9,8 +9,7 @@ import (
 	"strconv"
 	"strings"
 	"time"
-
-	"golang.org/x/sys/windows"
+	//"golang.org/x/sys/windows"
 )
 
 // vars START
@@ -18,8 +17,6 @@ import (
 var (
 	session          []string
 	is_quit          = false
-	user32_dll       = windows.NewLazyDLL("user32.dll")
-	GetKeyState      = user32_dll.NewProc("GetKeyState")
 	coordX, coordY   int64
 	coordsX, coordsY []int64
 	dts              []float64
@@ -29,6 +26,10 @@ var (
 )
 
 // vars END
+
+func QuitRecording() {
+	is_quit = true
+}
 
 func GetAdbCoords() byte {
 
@@ -42,7 +43,6 @@ func GetAdbCoords() byte {
 	s = "adb shell getevent"
 	//s = "adb -s 8CCX1ML3X shell getevent"
 	args2 := strings.Split(s, " ")
-	var isQuit = false
 
 	cmd = exec.Command(args2[0], args2[1:]...)
 	stdout, err := cmd.StdoutPipe()
@@ -51,19 +51,13 @@ func GetAdbCoords() byte {
 	}
 	cmd.Start()
 
-
-	
 	buf := bufio.NewReader(stdout)
 	reinitTimer = true
 
-	for isQuit == false {
-		if wasESCPressed() {
-			isQuit = true
-			break
-		}
+	for !is_quit {
 
 		time.Sleep(time.Millisecond * 1)
-		if reinitTimer == true {
+		if reinitTimer {
 			start = time.Now()
 			reinitTimer = false
 		}
@@ -105,7 +99,7 @@ func GetAdbCoords() byte {
 				dt = time.Since(start).Seconds()
 				//dts = append(dts, duration)
 				estrin.WriteString(fmt.Sprintf("%.2f,\n", dt)) // %.2f
-				if dt > 0.05 { //  do not append the ittybitty microdecimal inputs that can fuck up the shell
+				if dt > 0.05 {                                 //  do not append the ittybitty microdecimal inputs that can fuck up the shell
 					//fmt.Print(estrin.String())
 					session = append(session, estrin.String())
 				}
@@ -155,11 +149,6 @@ func removeDuplicateStr(strSlice []string) []string {
 	return list
 }
 
-func wasESCPressed() bool {
-	r1, _, _ := GetKeyState.Call(27) // Call API to get ESC key state.
-	return r1 == 65409               // Code for KEY_UP event of ESC key.
-}
-
 func Swipe(direction string) {
 
 	var param string
@@ -193,6 +182,5 @@ func Swipe(direction string) {
 	sp := exec.Command(appndS[0], appndS[1:]...)
 
 	sp.Run()
-
 
 }
