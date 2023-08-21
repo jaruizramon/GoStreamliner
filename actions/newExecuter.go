@@ -63,14 +63,16 @@ func ExecuteShell() {
 		}
 // PROBLEM START
 		var commandy string
-		if x != "-1" && y != "-1" { // if swipe
-			commandy = fmt.Sprintf("input tap %s %s && sleep %s && \n", x, y,dt)
+		if x != "-1" && y != "-1" { // if tap!
+			commandy = fmt.Sprintf("input tap %s %s && sleep %s && ", x, y,dt)
 			shellString.WriteString(commandy)
 			fmt.Printf("%s %s %s %s \n", x,y,dt,swipe)
-		} else { // it's a tap!
-			commandy = fmt.Sprintf("input swipe %s && sleep %s && \n" , swiper, "1.5")
+			shellString.WriteString(fmt.Sprintf("echo 'x -> %s \t y -> %s \t dt ->%s'\n", x, y, dt))
+		} else { // it's a swipe!
+			commandy = fmt.Sprintf("input swipe %s && sleep %s && " , swiper, "1.5")
 			shellString.WriteString(commandy)
 			fmt.Printf("%s %s %s %s \n", x,y,dt,swipe)
+			shellString.WriteString(fmt.Sprintf("echo 'SWIPE %s'\n", swiper))
 		}
 
 	}
