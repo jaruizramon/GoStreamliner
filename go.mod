@@ -5,7 +5,7 @@ go 1.20
 require (
 	github.com/aarzilli/nucular v0.0.0-20230531140252-73505eb2e866
 	github.com/go-gota/gota v0.12.0
-	golang.org/x/sys v0.10.0
+	golang.org/x/sys v0.12.0
 )
 
 require (

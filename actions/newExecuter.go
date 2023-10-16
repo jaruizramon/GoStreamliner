@@ -1,5 +1,8 @@
 package actions
 
+// read this shit to improve this shit
+// https://android.stackexchange.com/questions/236037/faster-alternative-to-input
+
 import (
 	"encoding/csv"
 	"fmt"
@@ -9,7 +12,6 @@ import (
 	"os/exec"
 	"strings"
 )
-
 func ExecuteShell() {
 
 	var (
@@ -19,13 +21,11 @@ func ExecuteShell() {
 		shellString strings.Builder
 		swipe string
 	)
-
 	// open file
 	f, err := os.Open("testy.csv")
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	// remember to close the file at the end of the program
 	defer f.Close()
 	commands := [3]string{"adb","shell \"","input tap 150 40 && "}
@@ -64,22 +64,20 @@ func ExecuteShell() {
 // PROBLEM START
 		var commandy string
 		if x != "-1" && y != "-1" { // if tap!
-			commandy = fmt.Sprintf("input tap %s %s && sleep %s && ", x, y,dt)
-			shellString.WriteString(commandy)
 			fmt.Printf("%s %s %s %s \n", x,y,dt,swipe)
-			shellString.WriteString(fmt.Sprintf("echo 'x -> %s \t y -> %s \t dt ->%s'\n", x, y, dt))
+			shellString.WriteString(fmt.Sprintf("echo '%s %s %s' && ", x, y, dt))
+			commandy = fmt.Sprintf("input tap %s %s && sleep %s && \n", x, y,dt)
+			shellString.WriteString(commandy)
 		} else { // it's a swipe!
-			commandy = fmt.Sprintf("input swipe %s && sleep %s && " , swiper, "1.5")
-			shellString.WriteString(commandy)
 			fmt.Printf("%s %s %s %s \n", x,y,dt,swipe)
-			shellString.WriteString(fmt.Sprintf("echo 'SWIPE %s'\n", swiper))
+			shellString.WriteString(fmt.Sprintf("echo 'SWIPE %s' && ", swiper))
+			commandy = fmt.Sprintf("input swipe %s && sleep %s \n" , swiper, "1.5")
+			shellString.WriteString(commandy)
+			
 		}
-
 	}
 	cmd := exec.Command(cwd, commands[1], executableString)
 	fmt.Printf("adb %s%s", commands[1], executableString)
-	
 // PROBLEM
-	
 	cmd.Run()
 }
